@@ -1,0 +1,262 @@
+@font-face {
+  font-family: 'Made Sans';
+  src: url('/fonts/MadeSans/Webfont/MadeSans-Medium.woff2') format('woff2'),
+       url('/fonts/MadeSans/Webfont/MadeSans-Medium.woff') format('woff'),
+       url('/fonts/MadeSans/Webfont/MadeSans-Medium.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Made Sans';
+  src: url('/fonts/MadeSans/Webfont/MadeSans-Medium.woff2') format('woff2'),
+       url('/fonts/MadeSans/Webfont/MadeSans-Medium.woff') format('woff'),
+       url('/fonts/MadeSans/Webfont/MadeSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Made Sans';
+  src: url('/fonts/MadeSans/Webfont/MadeSans-Medium.woff2') format('woff2'),
+       url('/fonts/MadeSans/Webfont/MadeSans-Medium.woff') format('woff'),
+       url('/fonts/MadeSans/Webfont/MadeSans-Medium.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/DMSans/DMSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/DMSans/DMSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/DMSans/DMSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/DMSans/DMSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #0F1010;
+    background: #FFFFFF;
+    font-size: 16px;
+  }
+}
+
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sidebar-link {
+  display: block;
+  padding: 4px 0 4px 12px;
+  font-size: 15px;
+  color: #6F8484;
+  line-height: 1.6;
+  border-left: 2px solid transparent;
+  transition: color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+
+.sidebar-link:hover {
+  color: #6324F3;
+}
+
+.sidebar-link.active {
+  color: #6324F3;
+  border-left-color: #6324F3;
+  font-weight: 500;
+}
+
+.tool-card {
+  position: relative;
+  transition: background 0.3s var(--ease-out);
+}
+
+.tool-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.tool-hover-content {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+
+.tool-card:hover .tool-hover-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tool-card:hover {
+  background: rgba(250, 251, 251, 0.95);
+}
+
+@media (hover: none), (max-width: 767px) {
+  .tool-hover-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #6324F3;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s var(--ease-out);
+}
+
+.nav-link-underline:hover::after,
+.nav-link-underline.active::after {
+  transform: scaleX(1);
+}
+
+.support-link {
+  position: relative;
+}
+
+.support-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #663DF9;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s var(--ease-out);
+}
+
+.support-link:hover::after {
+  transform: scaleX(1);
+}
+
+.search-input-large::placeholder {
+  color: #B6C6C6;
+}
+
+.handbook-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.handbook-sidebar::-webkit-scrollbar-thumb {
+  background: #DAE3E3;
+  border-radius: 2px;
+}
+
+.handbook-detail-snap {
+  scroll-snap-type: y proximity;
+}
+.handbook-detail-snap > section,
+.handbook-detail-snap > [id="handbook-content"] {
+  scroll-snap-align: start;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 900ms var(--ease-out), transform 900ms var(--ease-out);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal .reveal-item {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+}
+.reveal.is-in .reveal-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes tour-halo {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0   rgba(255, 255, 255, 0.00),
+      0 0 28px  4px rgba(255, 255, 255, 0.05);
+  }
+  50% {
+    box-shadow:
+      0 0 0 4px rgba(255, 255, 255, 0.08),
+      0 0 56px 10px rgba(255, 255, 255, 0.12);
+  }
+}
+.tour-halo { animation: tour-halo 2.6s var(--ease-out) infinite; }
+
+@keyframes tour-badge-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.tour-badge-in { animation: tour-badge-in 320ms var(--ease-out) both; }
+
+@keyframes tour-pointer {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);   opacity: 0.65; }
+  50%      { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+}
+.tour-pointer-ring {
+  animation: tour-pointer 1.8s var(--ease-out) infinite;
+}
+
+body.tour-freeze-handbook-cards .min-w-0.overflow-hidden.cursor-pointer {
+  flex: 1 1 0% !important;
+  transition: none !important;
+}
+body.tour-freeze-handbook-cards .min-w-0.overflow-hidden.cursor-pointer .mb-3 > div {
+  opacity: 1 !important;
+  transition: none !important;
+}
+body.tour-freeze-handbook-cards .min-w-0.overflow-hidden.cursor-pointer > div:nth-child(2) {
+  opacity: 1 !important;
+  filter: none !important;
+  transition: none !important;
+}
+body.tour-freeze-handbook-cards .min-w-0.overflow-hidden.cursor-pointer .flex.flex-col.justify-end {
+  opacity: 0 !important;
+  max-width: 0 !important;
+  transition: none !important;
+}
