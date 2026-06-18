@@ -22,3 +22,5 @@ pnpm-debug.log*
 .env
 .env.local
 .env.*.local
+id_rsa
+id_rsa.pub
